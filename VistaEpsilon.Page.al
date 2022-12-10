@@ -16,6 +16,13 @@ page 50104 "Vista Epsilon"
     {
         area(content)
         {
+            field("No."; rec."No.")
+            {
+                Caption = 'Nº';
+                StyleExpr = styletxt;
+                Visible = true;
+            }
+
             repeater(Group)
             {
                 Editable = false;
@@ -24,11 +31,7 @@ page 50104 "Vista Epsilon"
                 IndentationControls = "Nombre";
                 */
 
-                field("No."; rec."No.")
-                {
-                    Caption = 'Nº';
-                    StyleExpr = styletxt;
-                }
+
                 field("Primer Apellido"; rec."First Family Name")
                 {
                     Caption = 'Primer Apellido';
