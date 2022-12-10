@@ -11,7 +11,7 @@
             /*"primaryTenantDomain": "amapalaes.onmicrosoft.com",*/
             "dependencyPublishingOption": "Default",
             "schemaUpdateMode":"Synchronize" ,
-            "startupObjectId": 22,
+            "startupObjectId": 50104,
             "startupObjectType": "Page",
             "breakOnError": "All",
             "launchBrowser": true,
