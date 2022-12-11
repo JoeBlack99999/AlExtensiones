@@ -10,10 +10,13 @@ codeunit 50103 Epsilon
     var
         fecharr: Date;
     begin
-        if UserId <> 'GRUPOORTIZ\IVAN.ARCHILLA' then
+
+
+
+        /* if UserId <> 'GRUPOORTIZ\IVAN.ARCHILLA' then
             Error('NO ESTAS AUTORIZADO A REALIZAR ESTA OPERACIÓN.');
 
-        /*  
+         
            Create(aa, false, true);
            aa.Open('Provider=OraOLEDB.Oracle;Data Source=EPSILON;User Id=navuser;Password=navuser;');
            Create(aaa, false, true);
