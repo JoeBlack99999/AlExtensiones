@@ -8,15 +8,17 @@ pageextension 50102 EmployeeList extends 5201
 {
     trigger OnOpenPage();
     begin
+        /*  
+
         Message('Aplicación Extensión Página (Lista de Empleados): Hello world Jose Nieto Encinas');
 
-        /*  
-          SMTPMailSetup.GET;
-          MESSAGE(SMTPMailSetup."User ID");
-          SMTPMail.CreateMessage('test object', SMTPMailSetup."User ID", 'metest@gmail.com', 'test', 'some text body', FALSE);
-          SMTPMail.Send;
-          MESSAGE('Mail Sent');
-       */
+
+         SMTPMailSetup.GET;
+         MESSAGE(SMTPMailSetup."User ID");
+         SMTPMail.CreateMessage('test object', SMTPMailSetup."User ID", 'metest@gmail.com', 'test', 'some text body', FALSE);
+         SMTPMail.Send;
+         MESSAGE('Mail Sent');
+      */
 
     end;
 
