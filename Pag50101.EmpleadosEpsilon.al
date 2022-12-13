@@ -39,10 +39,61 @@ page 50101 "Empleados Epsilon"
                 {
                     ToolTip = 'Specifies the employee''s date of birth.';
                 }
-                field("E-Mail"; Rec."E-Mail")
+                field("Company E-Mail"; Rec."Company E-Mail")
                 {
                     ToolTip = 'Specifies the employee''s private email address.';
                 }
+
+                field("Nif Empleado"; rec.NifEmpleado)
+                {
+                    ToolTip = 'Nif Empleado.';
+                }
+
+                field("Area Geográfica"; rec."Area_Geografica")
+                {
+                    ToolTip = 'Area Geográfica.';
+                }
+
+                field("Area Negocio"; rec."Area_Negocio")
+                {
+                    ToolTip = 'Area Negocio.';
+                }
+
+                field("Departamento"; rec."Departamento")
+                {
+                    ToolTip = 'Departamento.';
+                }
+
+                field("Seccion"; rec."Seccion")
+                {
+                    ToolTip = 'Seccion.';
+                }
+
+                field("Rol"; rec."Rol")
+                {
+                    ToolTip = 'Rol.';
+                }
+
+                field("Orden Rol Seccion"; rec."Orden_Rol_Seccion")
+                {
+                    ToolTip = 'Orden_Rol_Seccion.';
+                }
+
+                field("Puesto"; rec."Puesto")
+                {
+                    ToolTip = 'Puesto.';
+                }
+
+                field("Subrogable"; rec."Subrogable")
+                {
+                    ToolTip = 'Subrogable.';
+                }
+
+                field("Proyecto"; rec."Proyecto")
+                {
+                    ToolTip = 'Proyecto.';
+                }
+
             }
         }
 
@@ -66,8 +117,6 @@ page 50101 "Empleados Epsilon"
                 ApplicationArea = All;
                 Caption = '&Import';
                 Image = ImportExcel;
-                Promoted = true;
-                PromotedCategory = Process;
                 ToolTip = 'Importar Excel';
                 trigger OnAction()
                 begin
@@ -78,38 +127,29 @@ page 50101 "Empleados Epsilon"
 
             }
 
-        }
+            action("&ImportFotos")
+            {
+                ApplicationArea = All;
+                Caption = '&ImportFotos';
+                Image = Import;
+                ToolTip = 'Importar Fotos';
+                trigger OnAction()
+                begin
+                    ImportFotos();
 
+                end;
+            }
+
+        }
     }
 
     var
         rExcelBuffer: Record "Excel Buffer";
+
         i: Integer;
         vDialogo: Dialog;
         FileName: Text[100];
         SheetName: text[100];
-
-
-
-    local procedure ReadExcelSheet()
-    var
-        FileManagement: Codeunit "File Management";
-        IStream: InStream;
-        FromFile: Text[100];
-
-    begin
-        UploadIntoStream('Seleccione el Excel..', '', '', FromFile, IStream);
-        if FromFile <> '' then begin
-            FileName := FileManagement.GetFileName(FromFile);
-            SheetName := rExcelBuffer.SelectSheetsNameStream(IStream);
-        end else
-            Error('Excel no encontrado');
-
-        rExcelBuffer.Reset();
-        rExcelBuffer.DeleteAll();
-        rExcelBuffer.OpenBookStream(IStream, SheetName);
-        rExcelBuffer.ReadSheet();
-    end;
 
     local procedure GetValueAtCell(RowNo: Integer; ColNo: Integer): Text
     begin
@@ -153,7 +193,19 @@ page 50101 "Empleados Epsilon"
             Evaluate(rEmpleado.Name, GetValueAtCell(RowNo, 18));
             Evaluate(rEmpleado."Employment Date", GetValueAtCell(RowNo, 42));
             Evaluate(rEmpleado."Birth Date", GetValueAtCell(RowNo, 83));
-            Evaluate(rEmpleado."E-Mail", GetValueAtCell(RowNo, 123));
+            Evaluate(rEmpleado."Company E-Mail", GetValueAtCell(RowNo, 123));
+            Evaluate(rEmpleado."NifEmpleado", GetValueAtCell(RowNo, 15));
+
+            Evaluate(rEmpleado."Area_Geografica", GetValueAtCell(RowNo, 7));
+            Evaluate(rEmpleado."Area_Negocio", GetValueAtCell(RowNo, 4));
+            Evaluate(rEmpleado."Departamento", GetValueAtCell(RowNo, 23));
+            Evaluate(rEmpleado."Seccion", GetValueAtCell(RowNo, 25));
+            Evaluate(rEmpleado."Rol", GetValueAtCell(RowNo, 11));
+            Evaluate(rEmpleado."Orden_Rol_Seccion", GetValueAtCell(RowNo, 10));
+            Evaluate(rEmpleado."Puesto", GetValueAtCell(RowNo, 12));
+            Evaluate(rEmpleado."Subrogable", GetValueAtCell(RowNo, 131));
+            Evaluate(rEmpleado."Proyecto", GetValueAtCell(RowNo, 129));
+
 
             rEmpleado.Insert();
 
@@ -162,5 +214,61 @@ page 50101 "Empleados Epsilon"
         Message('Importación Excel satisfactoria ');
 
 
+    end;
+
+
+    /*[Scope('OnPrem')]*/
+    local procedure ImportFotos()
+    var
+        i: Integer;
+        FileManagement: Codeunit "File Management";
+        txtruta: text;
+        /*rFichero: Record "File";*/
+        vNifEmpleado: text;
+    begin
+        i := 0;
+
+        txtruta := 'C:\TMP\Fotos\NIF';
+        /*IF NOT FileManagement.ServerDirectoryExists(txtruta) THEN BEGIN
+            FileManagement.ServerCreateDirectory(txtruta);
+        END;
+
+        rFichero.SETRANGE(Path, txtruta);
+        rFichero.SETRANGE("Is a file", TRUE);
+        rFichero.SETFILTER(Name, vNifEmpleado);
+        IF rFichero.FINDFIRST() THEN
+        BEGIN
+            REPEAT
+
+                Rec.RESET;
+                Rec.SETFILTER("NifEmpleado", vNifEmpleado);
+
+                IF Rec.FINDFIRST() THEN BEGIN
+                    Rec.Image.IMPORTFILE(txtruta + rFichero.Name, rFichero.Name);
+                    Rec.MODIFY;
+                    COMMIT;
+                END;
+            UNTIL rFichero.NEXT = 0;
+        END;*/
+    end;
+
+    local procedure ReadExcelSheet()
+    var
+        FileManagement: Codeunit "File Management";
+        IStream: InStream;
+        FromFile: Text[100];
+
+    begin
+        UploadIntoStream('Seleccione el Excel..', '', '', FromFile, IStream);
+        if FromFile <> '' then begin
+            FileName := FileManagement.GetFileName(FromFile);
+            SheetName := rExcelBuffer.SelectSheetsNameStream(IStream);
+        end else
+            Error('Excel no encontrado');
+
+        rExcelBuffer.Reset();
+        rExcelBuffer.DeleteAll();
+        rExcelBuffer.OpenBookStream(IStream, SheetName);
+        rExcelBuffer.ReadSheet();
     end;
 }
