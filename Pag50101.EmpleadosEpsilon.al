@@ -217,7 +217,10 @@ page 50101 "Empleados Epsilon"
     end;
 
 
-    /*[Scope('OnPrem')]*/
+    /*
+    [Scope('OnPrem')]
+    */
+
     local procedure ImportFotos()
     var
         i: Integer;

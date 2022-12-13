@@ -1,6 +1,6 @@
-{
-    "version": "0.2.0",
+{   "version": "0.2.0",
     "configurations": [
+
 
         {
             "name": "Microsoft cloud sandbox",
@@ -17,7 +17,6 @@
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true
-            
         }
     ]
 }
