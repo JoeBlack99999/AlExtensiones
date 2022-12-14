@@ -88,17 +88,16 @@ page 50101 "Empleados Epsilon"
                 {
                     ToolTip = 'Subrogable.';
                 }
-
                 field("Proyecto"; rec."Proyecto")
                 {
                     ToolTip = 'Proyecto.';
                 }
-
             }
-            cuegroup("Estadísticas")
+
+            cuegroup("Resumen")
             {
-                Caption = 'Estadísticas';
-                field("Seccion2"; rec."Seccion")
+                Caption = 'Nº Registros';
+                field("Nº Registros"; rec.N_Registros)
                 {
                     ToolTip = 'Seccion.';
                 }
@@ -112,6 +111,8 @@ page 50101 "Empleados Epsilon"
                 ApplicationArea = BasicHR;
                 SubPageLink = "No." = FIELD("No.");
             }
+
+
         }
 
     }
