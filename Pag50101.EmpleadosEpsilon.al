@@ -95,6 +95,14 @@ page 50101 "Empleados Epsilon"
                 }
 
             }
+            cuegroup("Estadísticas")
+            {
+                Caption = 'Estadísticas';
+                field("Seccion2"; rec."Seccion")
+                {
+                    ToolTip = 'Seccion.';
+                }
+            }
         }
 
         area(factboxes)
