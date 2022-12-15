@@ -71,21 +71,21 @@ page 50104 "Vista Epsilon"
             }
 
             /*
-            part(Control1000000037; "Obras Empleado")
-            {
-                SubPageLink = "Reason Code" = FIELD("No.");
-                SubPageView = SORTING("Entry No.")
-                              ORDER(Descending);
-            }
-            part("Personas al cargo"; "Employee List")
-            {
-                Caption = 'Personas al cargo';
-                SubPageLink = Responsable = FIELD("No."),
-                              "Termination Date" = FILTER(0D);
-                SubPageView = SORTING("No.")
-                              ORDER(Ascending);
-            }
-            */
+             part(Control1000000037; "Obras Empleado")
+             {
+                 SubPageLink = "Reason Code" = FIELD("No.");
+                 SubPageView = SORTING("Entry No.")
+                               ORDER(Descending);
+             }
+              part("Personas al cargo"; "Employee List")
+             {
+                 Caption = 'Personas al cargo';
+                 SubPageLink = Responsable = FIELD("No."),
+                               "Termination Date" = FILTER(0D);
+                 SubPageView = SORTING("No.")
+                               ORDER(Ascending);
+             }
+             */
         }
     }
 

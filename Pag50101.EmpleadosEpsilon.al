@@ -106,10 +106,19 @@ page 50101 "Empleados Epsilon"
 
         area(factboxes)
         {
-            part(Control1000000018; "Employee Picture")
+            part("Foto Empleado"; "Employee Picture")
             {
+                Caption = 'Foto Empleado';
                 ApplicationArea = BasicHR;
                 SubPageLink = "No." = FIELD("No.");
+            }
+            part("Personas a Cargo"; "Employee List")
+            {
+                Caption = 'Personas al cargo';
+                SubPageLink = Responsable = FIELD("No."),
+                              "Termination Date" = FILTER(0D);
+                SubPageView = SORTING("No.")
+                              ORDER(Ascending);
             }
 
 
@@ -213,7 +222,9 @@ page 50101 "Empleados Epsilon"
             Evaluate(rEmpleado."Orden_Rol_Seccion", GetValueAtCell(RowNo, 10));
             Evaluate(rEmpleado."Puesto", GetValueAtCell(RowNo, 12));
             Evaluate(rEmpleado."Subrogable", GetValueAtCell(RowNo, 131));
+            Evaluate(rEmpleado."Responsable", GetValueAtCell(RowNo, 53));
             Evaluate(rEmpleado."Proyecto", GetValueAtCell(RowNo, 129));
+
 
 
             rEmpleado.Insert();

@@ -52,8 +52,13 @@ tableextension 50115 "Extension Employee" extends Employee
             Caption = 'Proyecto';
             DataClassification = ToBeClassified;
         }
+        field(50110; Responsable; Text[200])
+        {
+            Caption = 'Responsable';
+            DataClassification = ToBeClassified;
+        }
 
-        field(50110; N_Registros; Integer)
+        field(50111; N_Registros; Integer)
         {
             CalcFormula = count(Employee);
             Caption = 'Nº Registros';
